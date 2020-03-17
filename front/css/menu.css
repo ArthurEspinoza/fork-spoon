@@ -107,4 +107,54 @@ nav a:hover {
 
 .btnPro:hover {
     text-transform: uppercase;
+    color: #30475e;
+}
+
+#productoBody {
+    background-image: url('../assets/fondoProducto.jpg');
+}
+
+.info {
+    width: 80%;
+    margin: 5% 0 0 10%;
+    background-color: #e7b2a5;
+    border: 5px dashed #ba6b57
+}
+
+.imgProduct {
+    padding: 2% 0 2% 3%;
+}
+
+.imgProduct img {
+    width: 100%;
+    height: 400px;
+}
+
+.productText {
+    padding: 2%;
+    color: #30475e;
+}
+
+.productText h3 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.productText p {
+    font-size: 20px;
+}
+
+.btnO {
+    background-color: #ba6b57;
+    color: #30475e;
+    border: none;
+    padding: 2%;
+    font-weight: bold;
+    margin-left: 34%;
+    margin-top: 2%;
+}
+
+.btnO:hover {
+    background-color: #30475e;
+    color: #ba6b57;
 }
