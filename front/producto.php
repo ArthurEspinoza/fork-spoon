@@ -28,17 +28,7 @@ $categorias = $acc->getCategorias();
     <nav class="navbar navbar-expand-lg">
         <h2>WolfBurger<i class="fas fa-hamburger"></i></h2>
         <a href="menu.php">Inicio</a>
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias</a>
-            <div class="dropdown-menu">
-                <?php 
-                    foreach ($categorias as $fila) {
-                        echo '<a href="#" class="dropdown-item">'.$fila['categoria'].'</a>';
-                    }
-                ?>
-            </div>
-        </div>
-        <a href="#" class="derecho">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
+        <a href="#" class="derechoProducto">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
     </nav>
     <section class="info">
         <div class="row">

@@ -114,6 +114,10 @@ nav a:hover {
     background-image: url('../assets/fondoProducto.jpg');
 }
 
+.derechoProducto {
+    margin-left: 69%;
+}
+
 .info {
     width: 80%;
     margin: 5% 0 0 10%;
