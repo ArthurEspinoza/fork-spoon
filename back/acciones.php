@@ -34,9 +34,9 @@
       }
       function getIngreFromProduct($idP){
          $resultado;
-         $query = $this->conn->db->prepare('SELECT i.nombre as ingredientes FROM incluyen AS inc
+         $query = $this->conn->db->prepare('SELECT i.nombre as nombre, i.idI as idI FROM incluyen AS inc
                                             inner join ingredientes as i on inc.idI = i.idI
-                                            Where inc.idP=:id');
+                                            Where inc.idP=:id ORDER BY idI ASC');
          $query->bindParam(':id',$idP, PDO::PARAM_INT);
          if ($query->execute()) {
             $resultado = $query->fetchAll();
