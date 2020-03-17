@@ -76,11 +76,13 @@ nav a:hover {
     width: 300px;
     background-color: #30475e;
     color: #f1935c;
+    float: left;
+    margin: 5%;
 }
 
 .card img {
     width: 100%;
-    height: 150px;
+    height: 180px;
 }
 
 .card-title {
@@ -94,4 +96,15 @@ nav a:hover {
 
 .card-text {
     text-align: justify;
+}
+
+.btnPro {
+    background-color: #f1935c;
+    color: #30475e;
+    font-weight: bold;
+    margin-left: 33%;
+}
+
+.btnPro:hover {
+    text-transform: uppercase;
 }

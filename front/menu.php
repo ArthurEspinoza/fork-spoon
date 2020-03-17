@@ -53,7 +53,6 @@ $categorias = $acc->getCategorias();
                 <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
         </div>-->
-        <div class="card-columns">
         <?php 
             $productos = $acc->getProductos();
             foreach ($productos as $fila) {
@@ -61,8 +60,9 @@ $categorias = $acc->getCategorias();
                 $tarjeta .= '
                     <img src="'.$fila['img'].'" class="img-card-top">
                     <div class="card-body">
-                        <h4 class="card-title"><a href="producto.php?idP='.$fila['idP'].'">'.$fila['nombre'].'</a></h4>
+                        <h4 class="card-title">'.$fila['nombre'].'</h4>
                         <p class="card-text">'.$fila['descrip'].'</p>
+                        <button class="btn btnPro" onclick="location.href=\'producto.php?idP='.$fila['idP'].'\'">Ver más</button>
                 ';
                 $tarjeta.='
                     </div>
@@ -71,7 +71,6 @@ $categorias = $acc->getCategorias();
             }
         ?>
         
-        </div>
     </section>
 </nav>
 </body>
