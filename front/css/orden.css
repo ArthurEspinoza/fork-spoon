@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    background-color: #30475e;
+    color: #f1935c;
+}
+
+i {
+    margin-left: 5px;
+}
+
+nav a {
+    color: #f1935c;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #e7b2a5;
+    text-decoration: none;
+}
+
+.dropdown-item {
+    margin: 0;
+}
+
+.derecho {
+    margin-left: 71%;
+}
+
+
+/*---BODY---*/
+
+#productoBody {
+    background-image: url('../assets/fondoProducto.jpg');
+}
+
+#ordenBody {
+    background-image: url('../assets/fondoOrden.jpg');
+    background-size: cover;
+    width: 55%;
+    margin-left: 22%;
+    margin-top: 3%;
+    padding: 3.5% 3% 3% 7%;
+}
+
+#ordenBody h1 {
+    font-weight: bold;
+}
+
+.card {
+    border: 5px solid #BEE6E3;
+    margin-bottom: 3%;
+}
+
+#mas,
+#menos {
+    width: 17%;
+    background-color: #e7b2a5;
+    color: #BA6B57;
+    border: none;
+}
+
+#mas {
+    margin-left: 3%;
+}
+
+#menos {
+    margin-right: 3%;
+}

@@ -35,7 +35,7 @@ $categorias = $acc->getCategorias();
                 ?>
             </div>
         </div>
-        <a href="#" class="derecho">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
+        <a href="orden.php" class="derecho">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
     </nav>
     <section id="cover">
         <img src="assets/fondo.jpg" alt="">
