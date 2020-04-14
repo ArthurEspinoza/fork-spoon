@@ -6,7 +6,8 @@
       public $conn;
       function __construct($conexion){
          $this->conn = $conexion;
-      } 
+      }
+      //Funciones para los menús 
       function getProductos(){
          $resultado;
          $query = $this->conn->db->prepare('SELECT * FROM productos');
@@ -43,6 +44,7 @@
             return $resultado;
          }
       }
+      //Funciones de administrador
       function insertarIngredientes($nombre, $precio, $stock){
          $query = $this->conn->db->prepare('INSERT INTO ingredientes(nombre,precio,stock)VALUES(:n, :p, :s)');
          $query->bindParam(':n', $nombre, PDO::PARAM_STR);
@@ -84,6 +86,20 @@
           if($query->execute()){
              return "DELETE-OK";
           }
+       }
+       //Funciones de orden
+       function verOrden($numM, $cl){
+          $resultado;
+          $query = $this->conn->db->prepare('SELECT p.nombre, p.precio, o.notas, o.cantidad, m.numM from orden as o
+                                                    inner join productos as p on o.idP = p.idP
+                                                    inner join mesas as m on o.numM = m.numM
+                                                    where m.numM = :nm and m.cliente = :c');
+         $query->bindParam(':nm', $numM, PDO::PARAM_INT);
+         $query->bindParam(':c', $cl, PDO::PARAM_STR);
+         if($query->execute()){
+            $resultado = $query->fetchAll();
+            return $resultado;
+         }
        }
    }
    //$m = new Menu($conn);
