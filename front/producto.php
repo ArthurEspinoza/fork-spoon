@@ -28,7 +28,7 @@ $categorias = $acc->getCategorias();
     <nav class="navbar navbar-expand-lg">
         <h2>WolfBurger<i class="fas fa-hamburger"></i></h2>
         <a href="menu.php">Inicio</a>
-        <a href="#" class="derechoProducto">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
+        <a href="orden.php" class="derechoProducto">Ver Orden<i class="far fa-list-alt fa-lg"></i></a>
     </nav>
     <section class="info">
         <div class="row">
@@ -36,7 +36,7 @@ $categorias = $acc->getCategorias();
                 <img src="<?php echo $producto['img']?>">
             </div>
             <div class="col-lg-6 productText">
-                <h3><?php echo $producto['nombre']?></h3>
+                <h3><?php echo $producto['nombre']?> - $<?php echo $producto['precio']?> MXN</h3>
                 <p><?php echo $producto['descrip']?></p>
                 <ul class="fa-ul">
                     <?php 

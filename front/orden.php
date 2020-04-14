@@ -1,3 +1,10 @@
+<?php 
+include('../back/conexion.php');
+include('../back/acciones.php');
+$conn = Singleton::getInstance();
+$acc = new Menu($conn);
+$ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,35 +29,42 @@
     </nav>
     <section id="ordenBody">
         <h1>Orden para la mesa: 1</h1>
-        <!-- <div class="card-deck">
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre del platillo</h5>
-                    <p class="card-text">No se hizo ninguna personalización para este platillo<br> </p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cantidad: </li>
-                    <li class="list-group-item">Precio:</li>
-                </ul>
-                <div class="card-body">
-                    <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </div>
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">Nombre del platillo</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cantidad: </li>
-                    <li class="list-group-item">Precio:</li>
-                </ul>
-                <div class="card-body">
-                    <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </div>
-        </div> -->
-        <div class="row">
+        <?php
+            foreach ($ordenes as $orden) {
+                $card = '<div class="card" style="width: 70%;">';
+                $card .= '
+                    <div class="card-body">
+                        <h5>'.$orden['nombre'].'</h5>';
+                if(isset($orden['notas'])){
+                    $card .= '
+                        <p>'.$orden['notas'].'<br></p></div>
+                    ';
+                }else{
+                    $card .= '<p>No se hizo ninguna personalización para este platillo</p></div>';
+                }
+                $card .= '
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            Cantidad:
+                            <button id="menos"><i class="fas fa-minus"></i></button>
+                            '.$orden['cantidad'].'
+                            <button id="mas"><i class="fas fa-plus"></i></button> 
+                        </li>
+                        <li class="list-group-item">
+                            Precio:<div id="precio">$'.$orden['precio'].' MXN</div>
+                        </li>
+                    </ul>
+                ';
+                $card .= '
+                    <div class="card-body">
+                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
+                    </div>
+                ';
+                $card .= '</div>';
+                echo $card;
+            }
+        ?>
+        <!-- <div class="row">
             <div class="col-sm-6">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -125,7 +139,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 </body>
 </html>
