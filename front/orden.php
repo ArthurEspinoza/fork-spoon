@@ -46,9 +46,9 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
                             Cantidad:
-                            <button id="menos"><i class="fas fa-minus"></i></button>
+                            <button id="menos" onclick="updateC(\'-\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-minus"></i></button>
                             '.$orden['cantidad'].'
-                            <button id="mas"><i class="fas fa-plus"></i></button> 
+                            <button id="mas" onclick="updateC(\'+\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-plus"></i></button> 
                         </li>
                         <li class="list-group-item">
                             Precio:<div id="precio">$'.$orden['precio'].' MXN</div>
@@ -64,82 +64,27 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
                 echo $card;
             }
         ?>
-        <!-- <div class="row">
-            <div class="col-sm-6">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre del platillo</h5>
-                        <p class="card-text">No se hizo ninguna personalización para este platillo<br> </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cantidad: 
-                            <button id="menos"><i class="fas fa-minus"></i></button>
-                                50
-                            <button id="mas" ><span><i class="fas fa-plus"></i></span></button> </li>
-                        <li class="list-group-item">Precio: $1000 MXN</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre del platillo</h5>
-                        <p class="card-text">No se hizo ninguna personalización para este platillo<br> </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cantidad:
-                            <button id="menos"><i class="fas fa-minus"></i></button>
-                                50
-                            <button id="mas" ><span><i class="fas fa-plus"></i></span></button> </li>
-                        <li class="list-group-item">Precio: $1000 MXN</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre del platillo</h5>
-                        <p class="card-text">No se hizo ninguna personalización para este platillo<br> </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cantidad: 
-                            <button id="menos"><i class="fas fa-minus"></i></button>
-                                50
-                            <button id="mas" ><span><i class="fas fa-plus"></i></span></button></li>
-                        <li class="list-group-item">Precio: $1000 MXN</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Nombre del platillo</h5>
-                        <p class="card-text">No se hizo ninguna personalización para este platillo<br> </p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Cantidad: 
-                            <button id="menos"><i class="fas fa-minus"></i></button>
-                                50
-                            <button id="mas" ><span><i class="fas fa-plus"></i></span></button></li>
-                        <li class="list-group-item">Precio: $1000 MXN</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </section>
 </body>
+<script>
+    function updateC(tipo, idP, numM, cliente, cantidad){
+        //console.log(tipo+idP+idM+cliente);
+        var datos = {
+            op: tipo,
+            idP: idP,
+            numM: numM,
+            cliente: cliente,
+            cantidad: cantidad            
+        }
+        $.ajax({
+            type: 'POST',
+            url: '../back/controllerAjax.php',
+            data: datos,
+            success: function(res){
+                //console.log(res);
+                window.location.href="orden.php"
+            }
+        })
+    }
+</script>
 </html>
