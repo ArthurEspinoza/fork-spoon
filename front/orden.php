@@ -30,40 +30,44 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
     <section id="ordenBody">
         <h1>Orden para la mesa: 1</h1>
         <?php
-            foreach ($ordenes as $orden) {
-                $card = '<div class="card" style="width: 70%;">';
-                $card .= '
-                    <div class="card-body">
-                        <h5>'.$orden['nombre'].'</h5>';
-                if(isset($orden['notas'])){
+            if(empty($ordenes)){
+                echo '<h3 class="mt-4 text-center">Su orden está vacia</h3>';
+            }else{
+                foreach ($ordenes as $orden) {
+                    $card = '<div class="card" style="width: 70%;">';
                     $card .= '
-                        <p>'.$orden['notas'].'<br></p></div>
+                        <div class="card-body">
+                            <h5>'.$orden['nombre'].'</h5>';
+                    if(isset($orden['notas'])){
+                        $card .= '
+                            <p>'.$orden['notas'].'<br></p></div>
+                        ';
+                    }else{
+                        $card .= '<p>No se hizo ninguna personalización para este platillo</p></div>';
+                    }
+                    $card .= '
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <p id="cantidad">Cantidad:</p>';
+                                if($orden['cantidad'] != 1){
+                                    $card.= '<button id="menos" onclick="updateC(\'-\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-minus"></i></button>';
+                                }
+                                $card .= $orden['cantidad'].'
+                                <button id="mas" onclick="updateC(\'+\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-plus"></i></button> 
+                            </li>
+                            <li class="list-group-item">
+                                Precio:<div id="precio">$'.$orden['precio'].' MXN</div>
+                            </li>
+                        </ul>
                     ';
-                }else{
-                    $card .= '<p>No se hizo ninguna personalización para este platillo</p></div>';
+                    $card .= '
+                        <div class="card-body">
+                            <button class="btn btn-block btn-danger" onclick="borrarE('.$orden['idP'].', '.$orden['numM'].', \''.$orden['cliente'].'\')"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    ';
+                    $card .= '</div>';
+                    echo $card;
                 }
-                $card .= '
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <p id="cantidad">Cantidad:</p>';
-                            if($orden['cantidad'] != 1){
-                                $card.= '<button id="menos" onclick="updateC(\'-\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-minus"></i></button>';
-                            }
-                            $card .= $orden['cantidad'].'
-                            <button id="mas" onclick="updateC(\'+\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-plus"></i></button> 
-                        </li>
-                        <li class="list-group-item">
-                            Precio:<div id="precio">$'.$orden['precio'].' MXN</div>
-                        </li>
-                    </ul>
-                ';
-                $card .= '
-                    <div class="card-body">
-                        <button class="btn btn-block btn-danger"><i class="fas fa-trash-alt"></i></button>
-                    </div>
-                ';
-                $card .= '</div>';
-                echo $card;
             }
         ?>
     </section>
@@ -85,6 +89,22 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
             success: function(res){
                 //console.log(res);
                 window.location.href="orden.php"
+            }
+        })
+    }
+    function borrarE(idP, numM, cliente){
+        var datos = {
+            idP: idP,
+            numM: numM,
+            cliente: cliente
+        }
+        $.ajax({
+            type: 'POST',
+            url: '../back/controllerAjax.php',
+            data: datos,
+            success: function(res){
+                // console.log(res);
+                window.location.href="orden.php";
             }
         })
     }
