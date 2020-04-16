@@ -45,9 +45,11 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
                 $card .= '
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            Cantidad:
-                            <button id="menos" onclick="updateC(\'-\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-minus"></i></button>
-                            '.$orden['cantidad'].'
+                            <p id="cantidad">Cantidad:</p>';
+                            if($orden['cantidad'] != 1){
+                                $card.= '<button id="menos" onclick="updateC(\'-\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-minus"></i></button>';
+                            }
+                            $card .= $orden['cantidad'].'
                             <button id="mas" onclick="updateC(\'+\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-plus"></i></button> 
                         </li>
                         <li class="list-group-item">

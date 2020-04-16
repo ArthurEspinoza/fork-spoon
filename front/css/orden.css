@@ -72,6 +72,11 @@ nav a:hover {
     border: none;
 }
 
+#cantidad {
+    display: inline;
+    margin-right: 20%;
+}
+
 #mas {
     margin-left: 3%;
 }
@@ -83,5 +88,5 @@ nav a:hover {
 #precio {
     display: inline;
     font-weight: bold;
-    margin-left: 6%;
+    margin-left: 37%;
 }
