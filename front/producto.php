@@ -49,7 +49,36 @@ $categorias = $acc->getCategorias();
                         }
                     ?>
                 </ul>
-                <button class="btnO">Agregar a mi orden</button>
+                <!---<button class="btnO">Agregar a mi orden</button>-->
+
+                <!-- Button trigger modal -->
+                <button type="button" class="btnO" data-toggle="modal" data-target="#exampleModal">
+                  Agregar a mi orden </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nombre de la hamburgusa</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <label for="quantity">Cantidad:</label>
+                        <input type="number" id="quantity" size="5" name="quantity" min="1" max="10" step="1" value="1">
+                        <br>
+                        <label for="exampleFormControlTextarea1">Personalizar producto</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btnO" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btnO">Aceptar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         </div>
     </section>
