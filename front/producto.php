@@ -74,7 +74,7 @@ $categorias = $acc->getCategorias();
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btnO" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btnO" onclick="addToOrden(<?php echo $idP?>, 1)">Aceptar</button>
+                        <button type="button" class="btnO"  data-dismiss="modal" onclick="addToOrden(<?php echo $idP?>, 1)">Aceptar</button>
                       </div>
                     </div>
                   </div>

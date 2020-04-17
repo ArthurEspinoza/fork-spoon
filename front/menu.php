@@ -30,7 +30,7 @@ $categorias = $acc->getCategorias();
             <div class="dropdown-menu">
                 <?php 
                     foreach ($categorias as $fila) {
-                        echo '<a href="#" class="dropdown-item">'.$fila['categoria'].'</a>';
+                        echo '<a href="#productos" class="dropdown-item">'.$fila['categoria'].'</a>';
                     }
                 ?>
             </div>
@@ -44,7 +44,7 @@ $categorias = $acc->getCategorias();
         </div>
     </section>
     <section id="productos">
-        <h1>Platillos</h1><hr>
+        <h1>Hamburguesas</h1><hr>
         <!--<div class="card" style="width: 18rem;">
             <img src="..." class="card-img-top" alt="...">
             <div class="card-body">
