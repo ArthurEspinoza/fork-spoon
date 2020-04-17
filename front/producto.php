@@ -60,21 +60,21 @@ $categorias = $acc->getCategorias();
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Nombre de la hamburgusa</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><?php echo $producto['nombre']?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
                         <label for="quantity">Cantidad:</label>
-                        <input type="number" id="quantity" size="5" name="quantity" min="1" max="10" step="1" value="1">
+                        <input type="number" id="cantidad" size="5" name="quantity" min="1" max="10" step="1" value="1">
                         <br>
                         <label for="exampleFormControlTextarea1">Personalizar producto</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea class="form-control" id="notas" rows="3"></textarea>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btnO" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btnO">Aceptar</button>
+                        <button type="button" class="btnO" onclick="addToOrden(<?php echo $idP?>, 1)">Aceptar</button>
                       </div>
                     </div>
                   </div>
@@ -83,4 +83,29 @@ $categorias = $acc->getCategorias();
         </div>
     </section>
 </body>
+<script>
+function addToOrden(idP, numM){
+  var cantidad = document.getElementById('cantidad').value;
+  var notas = document.getElementById('notas').value;
+  
+  /*console.log(cantidad + notas + idP + numM);
+  if(notas == ''){
+    console.log("Es nula");
+  }*/
+  var datos = {
+    idP: idP,
+    numM: numM,
+    cantidad: cantidad,
+    notas: notas
+  }
+  $.ajax({
+    type: 'POST',
+    url: '../back/controllerAjax.php',
+    data: datos,
+    success: function(res){
+      console.log(res);
+    }
+  })
+}
+</script>
 </html>

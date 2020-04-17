@@ -90,7 +90,7 @@
        //Funciones de orden
        function verOrden($numM, $cl){
           $resultado;
-          $query = $this->conn->db->prepare('SELECT p.nombre, p.precio, o.notas, o.cantidad, m.numM from orden as o
+          $query = $this->conn->db->prepare('SELECT p.nombre, p.precio, o.notas, o.cantidad, m.numM, p.idP, m.cliente from orden as o
                                                     inner join productos as p on o.idP = p.idP
                                                     inner join mesas as m on o.numM = m.numM
                                                     where m.numM = :nm and m.cliente = :c');
