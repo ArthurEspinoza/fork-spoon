@@ -56,7 +56,7 @@ $ordenes = $acc->verOrden(1, 'Arturo Espinoza Quintero');
                                 <button id="mas" onclick="updateC(\'+\', '.$orden['idP'].','.$orden['numM'].',\''.$orden['cliente'].'\', '.$orden['cantidad'].')"><i class="fas fa-plus"></i></button> 
                             </li>
                             <li class="list-group-item">
-                                Precio:<div id="precio">$'.$orden['precio'].' MXN</div>
+                                Precio:<div id="precio">$'.$orden['precio']*$orden['cantidad'].' MXN</div>
                             </li>
                         </ul>
                     ';
