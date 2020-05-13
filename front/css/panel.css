@@ -25,7 +25,7 @@ body {
 }
 
 #header h1 {
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 }
 
 #header h1 i {
@@ -33,10 +33,21 @@ body {
 }
 
 #header a {
-    color: #e7b2a5;
+    color: #BA6B57;
     margin: 0 10px 0 10px;
-    background-color: #304755;
     padding: 5px;
+    border: 3px solid #304755;
+}
+
+#header a:hover {
+    text-decoration: none;
+    background-color: #304755;
+    color: #e7b2a5;
+}
+
+#header a.active {
+    color: #e7b2a5;
+    background-color: #304755;
 }
 
 #panel {

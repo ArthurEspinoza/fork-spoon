@@ -26,7 +26,7 @@ $productos = $acc->getProductos();
     <div class="container">
         <div id="header">
             <h1>WolfBurger<i class="fas fa-hamburger"></i></h1>
-            <a href="#">Platillos</a><a href="#">Ingredientes</a>
+            <a class="active" href="#">Platillos</a><a href="panelIngredientes.php">Ingredientes</a>
         </div>
         <div id="panel">
             <h2>Platillos más pedidos <i class="fas fa-star"></i></h2>
@@ -66,7 +66,7 @@ $productos = $acc->getProductos();
                                 <td>'.$p['contPedidos'].'</td>
                                 <td>
                                     <button class="btn btn-info" 
-                                            onclick="location.href=\'panelProducto.php?idP='.$p['idP'].'\'">
+                                            onclick="location.href=\'gestionProducto.php?idP='.$p['idP'].'\'">
                                         <i class="far fa-edit"></i>
                                     </button>
                                 </td>
