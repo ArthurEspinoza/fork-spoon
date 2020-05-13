@@ -87,6 +87,15 @@
              return "DELETE-OK";
           }
        }
+       function topPlatillos(){
+          $resultado;
+          $query = $this->conn->db->prepare('SELECT contPedidos, nombre, precio, img from productos 
+                                                    where categoria="Hamburguesas" order by contPedidos desc limit 3');
+          if($query->execute()){
+            $resultado = $query->fetchAll();
+            return $resultado;
+          }
+       }
        //Funciones de orden
        function verOrden($numM, $cl){
           $resultado;
