@@ -164,55 +164,55 @@ nav a:hover {
 }
 
 .btnLogin {
-  background-color: #ba6b57;
-  color: #30475e;
-  border: none;
-  font-weight: bold;
-  padding: 5px;
+    background-color: #ba6b57;
+    color: #30475e;
+    border: none;
+    font-weight: bold;
+    padding: 5px;
 }
 
 .btnLogin:hover {
-  background-color: #30475e;
-  color: #ba6b57;
+    background-color: #30475e;
+    color: #ba6b57;
 }
 
 .main-section {
-  margin: 0;
-  margin-top: 40%;
-  margin-left: 15%;
-  padding: 0;
+    margin: 0;
+    margin-top: 30%;
+    margin-left: 15%;
+    padding: 0;
 }
 
 .modal-content {
-  background-color: #30475e;
-  color: #f1935c;
-  padding: 30px;
+    background-color: #30475e;
+    color: #f1935c;
+    padding: 30px;
 }
 
 .form-group {
-  padding-top: 20px;
+    padding-top: 20px;
 }
 
 .form-group input {
-  height: 42px;
-  font-size: 18px;
-  border: 0;
-  padding-left: 54px;
-  border-radius: 5px;
+    height: 42px;
+    font-size: 18px;
+    border: 0;
+    padding-left: 54px;
+    border-radius: 5px;
 }
 
 .form-group::before {
-  font-family: "Font Awesome\ 5 free";
-  position: absolute;
-  left: 28px;
-  font-size: 22px;
-  padding-top: 4px;
+    font-family: "Font Awesome\ 5 free";
+    position: absolute;
+    left: 28px;
+    font-size: 22px;
+    padding-top: 4px;
 }
 
 .form-group#user-group::before {
-  content: "\f007";
+    content: "\f007";
 }
 
 .form-group#password-group::before {
-  content: "\f023";
+    content: "\f023";
 }
