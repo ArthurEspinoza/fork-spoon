@@ -103,6 +103,80 @@
              return $resultado;
           }
        }
+       function addPlatillo($id, $n, $c, $d, $p, $f, $ingre){
+          //Primero creamos el platillo
+          $query = $this->conn->db->prepare('INSERT into productos(numT, nombre, precio, categoria, descrip, img)
+                                                         VALUES(:id, :n, :p, :c, :d, :f)');
+          $query->bindParam(':id', $id, PDO::PARAM_INT);
+          $query->bindParam(':n', $n, PDO::PARAM_STR);
+          $query->bindParam(':p', $p, PDO::PARAM_STR);
+          $query->bindParam(':c', $c, PDO::PARAM_STR);
+          $query->bindParam(':d', $d, PDO::PARAM_STR);
+          $query->bindParam(':f', $f, PDO::PARAM_STR);
+          if($query->execute()){
+            $lastid = $this->conn->db->lastInsertId();
+            $tam = sizeof($ingre);
+            $i = 0;
+            $estado = 0;
+            while($i < $tam){
+               $ingreq;
+               if($i==0){
+                  $ingreq = $this->conn->db->prepare('INSERT into incluyen(idP, idI, cantidad)values(:idP, :idI, 2)');
+               }else{
+                  $ingreq = $this->conn->db->prepare('INSERT into incluyen(idP, idI, cantidad)values(:idP, :idI, 1)');
+               }
+               $ingreq->bindParam(':idP', $lastid, PDO::PARAM_INT);
+               $ingreq->bindParam(':idI', $ingre[$i], PDO::PARAM_INT);
+               if($ingreq->execute()){
+                  $i++;
+               }else{
+                  $estado = 1;
+                  break;
+               }
+            }
+            if($estado == 0){
+               return 1;
+            }else{
+               return 0;
+            }
+          }
+       }
+       function getIncluyen($idP){
+          $arreglo = array();
+          $query = $this->conn->db->prepare('SELECT idI from incluyen where idP=:i');
+          $query->bindParam(':i', $idP, PDO::PARAM_INT);
+          if($query->execute()){
+             $resultado = $query->fetchAll();
+             foreach ($resultado as $r) {
+                array_push($arreglo, $r['idI']);
+             }
+             return $arreglo;
+          }
+       }
+       function updPlatillo($idP, $n, $c, $d, $p, $f){
+          $query = $this->conn->db->prepare('UPDATE productos set nombre=:n, categoria=:c,
+                                                    descrip=:d, precio=:p, img=:f WHERE idP = :id');
+          $query->bindParam(':id', $idP, PDO::PARAM_INT);
+          $query->bindParam(':n', $n, PDO::PARAM_STR);
+          $query->bindParam(':c', $c, PDO::PARAM_STR);
+          $query->bindParam(':d', $d, PDO::PARAM_STR);
+          $query->bindParam(':p', $p, PDO::PARAM_STR);
+          $query->bindParam(':f', $f, PDO::PARAM_STR);
+          if($query->execute()){
+             return 1;
+          }
+       }
+       function deletePlatillo($idP){
+          $query = $this->conn->db->prepare('DELETE from incluyen where idP = :i');
+          $query->bindParam(':i', $idP, PDO::PARAM_INT);
+          if($query->execute()){
+             $ingre = $this->conn->db->prepare('DELETE from productos where idP = :i');
+             $ingre->bindParam(':i', $idP, PDO::PARAM_INT);
+             if($ingre->execute()){
+                return 1;
+             }
+          }
+       }
        //Funciones de orden
        function verOrden($numM, $cl){
           $resultado;

@@ -70,7 +70,7 @@ $productos = $acc->getProductos();
                                 <td>'.$p['contPedidos'].'</td>
                                 <td>
                                     <button class="btn btn-info" 
-                                            onclick="location.href=\'gestionProducto.php?idP='.$p['idP'].'\'">
+                                            onclick="location.href=\'platillo/update.php?idP='.$p['idP'].'\'">
                                         <i class="far fa-edit"></i>
                                     </button>
                                 </td>
@@ -89,4 +89,24 @@ $productos = $acc->getProductos();
         </div>
     </div>
 </body>
+<script>
+    function eliminar(idP){
+        var datos = {
+            platillo: idP
+        }
+        console.log(datos);
+        $.ajax({
+            type: 'POST',
+            url: '../back/funcionesAjaxAdmin.php',
+            data: datos,
+            success: function(res){
+                console.log(res);
+                if(res == "1"){
+                    alert("Platillo Eliminado");
+                    window.location.href="panel.php";
+                }
+            }
+        })
+    }
+</script>
 </html>

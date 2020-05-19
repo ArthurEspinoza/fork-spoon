@@ -2,6 +2,7 @@
 session_start();
 include('../../back/conexion.php');
 include('../../back/acciones.php');
+$idT = $_SESSION['numT'];
 $conn = Singleton::getInstance();
 $acc = new Menu($conn);
 $ingrediente = $acc->getIngredientes();
@@ -40,7 +41,7 @@ $ingrediente = $acc->getIngredientes();
                 <div class="form-group">
                     <label for="descrip">Descripción</label>
                     <textarea class="form-control" name="descrip" id="descrip" 
-                            cols="30" rows="10" required></textarea>
+                            cols="20" rows="10" required></textarea>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6">
@@ -49,7 +50,7 @@ $ingrediente = $acc->getIngredientes();
                     </div>
                     <div class="form-group col-md-6">
                         <label for="img">Imagen</label>
-                        <input type="file" name="img" id="img" class="form-control-file">
+                        <input type="file" name="img" id="foto" class="form-control-file">
                     </div>
                 </div>
             </form>
@@ -93,8 +94,55 @@ $ingrediente = $acc->getIngredientes();
                 ?>
                 </div>
             </form>
-            <button class="btnAdd" onclick="getInputs()">Añadir Platillo</button>     
+            <button class="btnAdd" onclick="getInputs(<?php echo $idT?>)">Añadir Platillo</button>     
         </div>
     </div>
 </body>
+<script>
+    function getInputs(idT){
+        var n = document.getElementById('nombre').value;
+        var c = document.getElementById('cate').value;
+        var d = document.getElementById('descrip').value;
+        var p = document.getElementById('precio').value;
+        var f = document.getElementById('foto').value;
+        var checkBxs = document.getElementsByName('ingredientes');
+        var boxCheck = [];
+        for (var i=0; i<checkBxs.length; i++) {
+            // And stick the checked ones onto an array...
+            if (checkBxs[i].checked) {
+                boxCheck.push(checkBxs[i].attributes.id.nodeValue);
+            }
+        }
+        if(boxCheck.length < 3){
+            alert("Debe seleccionar al menos 3 ingredientes");
+            return;
+        }
+        var arr = f.split('\\');
+        var img = 'assets/'+arr[2];
+        // console.log(checkBxs.length);
+        // console.log(boxCheck);
+        // console.log(f);
+        var datos = {
+            id: idT,
+            n: n,
+            c: c,
+            d: d,
+            p: p,
+            f: img,
+            ingre: boxCheck
+        }
+        console.log(datos)
+        $.ajax({
+            type: 'POST',
+            url: '../../back/funcionesAjaxAdmin.php',
+            data: datos,
+            success: function(res){
+                if(res === 1){
+                    alert("Platillo Agregado exitosamente");
+                    window.location.href="../panel.php";
+                }
+            }
+        })
+    }
+</script>
 </html>

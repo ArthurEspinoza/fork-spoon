@@ -135,8 +135,33 @@ body {
     color: #304755;
 }
 
+.form-group textarea {
+    height: 110px;
+}
+
 .form-group input[type="text"]:focus,
 .form-group textarea:focus {
     border: 3px solid #BA6B57;
     outline: none !important;
+}
+
+
+/*Update platillo*/
+
+#imgLabel {
+    display: block;
+}
+
+.imgForm {
+    width: 100px;
+    height: 100px;
+}
+
+.btnUpd {
+    background-color: #3065ad;
+    border: 3px solid #304755;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    margin: 2% 0 2% 40%;
+    padding: 10px;
 }
