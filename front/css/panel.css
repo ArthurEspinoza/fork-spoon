@@ -15,9 +15,9 @@ body {
 }
 
 #header {
-    width: 40%;
+    width: 55%;
     background-color: #F3F3F3;
-    margin-left: 30%;
+    margin-left: 22%;
     padding: 2%;
     text-align: center;
     font-weight: bold;
@@ -50,6 +50,15 @@ body {
     background-color: #304755;
 }
 
+#header a.cerrarS {
+    color: #fe2222;
+}
+
+#header a.cerrarS:hover {
+    background-color: #fe2222;
+    color: #f4f4f4;
+}
+
 #panel {
     background-color: #F3F3F3;
     padding: 3%;
@@ -59,6 +68,14 @@ body {
     text-align: center;
     text-transform: uppercase;
     color: #BA6B57;
+}
+
+.btnAdd {
+    background-color: #30ad34;
+    border: 3px solid #304755;
+    color: #f4f4f4;
+    text-transform: uppercase;
+    margin: 2% 0 2% 40%;
 }
 
 #tp {
@@ -93,4 +110,33 @@ body {
 
 .sprecio {
     margin-left: 15%;
+}
+
+
+/*Add platillo*/
+
+.formContainer {
+    background-color: #F3F3F3;
+    padding: 3%;
+}
+
+.formContainer h2 {
+    text-align: center;
+    color: #304755;
+    font-weight: bold;
+}
+
+.formContainer form {
+    margin-top: 3%;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #304755;
+}
+
+.form-group input[type="text"]:focus,
+.form-group textarea:focus {
+    border: 3px solid #BA6B57;
+    outline: none !important;
 }

@@ -96,6 +96,13 @@
             return $resultado;
           }
        }
+       function getIngredientes(){
+          $query = $this->conn->db->prepare('SELECT idI, nombre from ingredientes');
+          if($query->execute()){
+             $resultado = $query->fetchAll();
+             return $resultado;
+          }
+       }
        //Funciones de orden
        function verOrden($numM, $cl){
           $resultado;

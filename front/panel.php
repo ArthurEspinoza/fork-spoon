@@ -1,6 +1,8 @@
-<?php 
+<?php
+session_start(); 
 include('../back/conexion.php');
 include('../back/acciones.php');
+$numT = $_SESSION['numT'];
 $conn = Singleton::getInstance();
 $acc = new Menu($conn);
 $top = $acc->topPlatillos();
@@ -27,6 +29,7 @@ $productos = $acc->getProductos();
         <div id="header">
             <h1>WolfBurger<i class="fas fa-hamburger"></i></h1>
             <a class="active" href="#">Platillos</a><a href="panelIngredientes.php">Ingredientes</a>
+            <a href="../back/cerrar.php" class="cerrarS">Cerrar Sesión</a>
         </div>
         <div id="panel">
             <h2>Platillos más pedidos <i class="fas fa-star"></i></h2>
@@ -43,6 +46,7 @@ $productos = $acc->getProductos();
                 ?>
             </div>
             <h2 id="tp">Todos los platillos</h2>
+            <button class="btn btnAdd" onclick="location.href='platillo/add.php'">Agregar platillo</button>
             <table class="table">
                 <thead>
                     <tr>
