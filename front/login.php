@@ -28,17 +28,16 @@ $acc = new Menu($conn);
         <div class="col-12">
           <h2> WolfBurger<i class="fas fa-hamburger"></i></h2>
         </div>
-        <form class="col-12" action="" method="post">
+        <form class="col-12" action="../back/acceso.php" method="post">
           <div class="form-group" id="user-group">
-            <input type="text" class="form-control" name="usuario" placeholder="Nombre de usuario">
+            <input type="text" class="form-control" name="usuario" id="usuario" placeholder="Nombre de usuario">
           </div>
           <div class="form-group" id="password-group">
-            <input type="password" class="form-control" name="password" placeholder="Contraseña">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
           </div>
           <div class="form-group">
             <button type="submit" class="btnLogin" name="buttonLogin"> <i class="fas fa-sign-in-alt"> </i> Ingresar </button>
           </div>
-
         </form>
       </div>
     </div>
