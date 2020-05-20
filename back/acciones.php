@@ -203,6 +203,14 @@
              return 1;
           }
        }
+       function stockUp($idI, $s){
+          $stocku = $this->conn->db->prepare('UPDATE ingredientes set stock = :s where idI = :i');
+          $stocku->bindParam(':s', $s, PDO::PARAM_INT);
+          $stocku->bindParam(':i', $idI, PDO::PARAM_INT);
+          if($stocku->execute()){
+             return 1;
+          }
+       }
        function updIngrediente($idI, $n, $p, $s, $t){
           $cambio = $this->conn->db->prepare('UPDATE ingredientes set nombre=:n, precio=:p, stock=:s, tipoStock=:t WHERE idI = :i');
           $cambio->bindParam(':n', $n, PDO::PARAM_STR);

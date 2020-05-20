@@ -55,7 +55,7 @@ $ingrediente = $acc->getIngredientes();
                                 <td>'.$i['stock'].'</td>
                                 <td>'.$i['tipoStock'].'</td>
                                 <td>
-                                    <button class="btn btn-warning">+ Stock</button>
+                                    <button class="btn btn-warning" onclick="addStock('.$i['idI'].', '.$i['stock'].')">+ Stock</button>
                                     <button class="btn btn-info" 
                                             onclick="location.href=\'ingre/update.php?id='.$i['idI'].'\'">
                                         <i class="far fa-edit"></i>
@@ -76,6 +76,26 @@ $ingrediente = $acc->getIngredientes();
     </div>
 </body>
 <script>
+function addStock(idI, stock){
+    var s = stock + 1;
+    var datos = {
+        idS: idI,
+        stock: s
+    }
+    console.log(datos);
+    $.ajax({
+        type: 'POST',
+        url: '../back/funcionesAjaxAdmin.php',
+        data: datos,
+        success: function(res){
+            console.log(res);
+            if(res == "1"){
+                alert("Stock aumentado");
+                window.location.href="panelIngredientes.php";
+            }
+        }
+    })
+}
 function eliminar(idI){
         var datos = {
             idI: idI

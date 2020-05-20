@@ -60,4 +60,11 @@ if(isset($_POST['idI'])){
    $result = $acc->delIngrediente($idI);
    echo $result;
 }
+//Aumentar Stock
+if(isset($_POST['idS'])&&isset($_POST['stock'])){
+   $idI = $_POST['idS'];
+   $s = $_POST['stock'];
+   $result = $acc->stockUp($idI, $s);
+   echo $result;
+}
 ?>
