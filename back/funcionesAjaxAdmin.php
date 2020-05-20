@@ -35,5 +35,29 @@ if(isset($_POST['id'])&&isset($_POST['n'])&&isset($_POST['c'])&&
         $result = $acc->updPlatillo($idP, $n, $c, $d, $p, $f);
         echo $result;
    }
-
+//Agregar Ingrediente
+if(isset($_POST['ni'])&&isset($_POST['pi'])&&isset($_POST['si'])&&isset($_POST['ti'])){
+   $n = $_POST['ni'];
+   $p = $_POST['pi'];
+   $s = $_POST['si'];
+   $t = $_POST['ti'];
+   $result = $acc->addIngrediente($n, $p, $s, $t);
+   echo $result;
+}
+//Modificar ingrediente
+if(isset($_POST['idi'])&&isset($_POST['ni'])&&isset($_POST['pi'])&&isset($_POST['si'])&&isset($_POST['ti'])){
+   $idI = $_POST['idi'];
+   $n = $_POST['ni'];
+   $p = $_POST['pi'];
+   $s = $_POST['si'];
+   $t = $_POST['ti'];
+   $result = $acc->updIngrediente($idI, $n, $p, $s, $t);
+   echo $result;
+}
+//Eliminar ingrediente
+if(isset($_POST['idI'])){
+   $idI = $_POST['idI'];
+   $result = $acc->delIngrediente($idI);
+   echo $result;
+}
 ?>

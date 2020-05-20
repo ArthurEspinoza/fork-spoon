@@ -165,3 +165,17 @@ body {
     margin: 2% 0 2% 40%;
     padding: 10px;
 }
+
+
+/*Panel ingredientes*/
+
+#ingrePanel {
+    background-color: #F3F3F3;
+    padding: 3%;
+}
+
+#ingrePanel h2 {
+    text-align: center;
+    text-transform: uppercase;
+    color: #BA6B57;
+}

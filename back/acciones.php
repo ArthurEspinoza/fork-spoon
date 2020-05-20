@@ -97,7 +97,7 @@
           }
        }
        function getIngredientes(){
-          $query = $this->conn->db->prepare('SELECT idI, nombre from ingredientes');
+          $query = $this->conn->db->prepare('SELECT * from ingredientes');
           if($query->execute()){
              $resultado = $query->fetchAll();
              return $resultado;
@@ -176,6 +176,66 @@
                 return 1;
              }
           }
+       }
+       function getTiposStock(){
+          $query = $this->conn->db->prepare('SELECT tipoStock from ingredientes group by tipoStock');
+          if($query->execute()){
+             $resultado = $query->fetchAll();
+             return $resultado;
+          }
+       }
+       function getUnIngrediente($idI){
+          $query = $this->conn->db->prepare('SELECT * from ingredientes where idI=:i');
+          $query->bindParam(':i', $idI, PDO::PARAM_INT);
+          if($query->execute()){
+             $resultado = $query->fetch();
+             return $resultado;
+          }
+       }
+       function addIngrediente($n, $p, $s, $t){
+          $query = $this->conn->db->prepare('INSERT into ingredientes(nombre, precio, stock, tipoStock)
+                                                         VALUES(:n, :p, :s, :t)');
+          $query->bindParam(':n', $n, PDO::PARAM_STR);
+          $query->bindParam(':p', $p, PDO::PARAM_STR);
+          $query->bindParam(':s', $s, PDO::PARAM_INT);
+          $query->bindParam(':t', $t, PDO::PARAM_STR);
+          if($query->execute()){
+             return 1;
+          }
+       }
+       function updIngrediente($idI, $n, $p, $s, $t){
+          $cambio = $this->conn->db->prepare('UPDATE ingredientes set nombre=:n, precio=:p, stock=:s, tipoStock=:t WHERE idI = :i');
+          $cambio->bindParam(':n', $n, PDO::PARAM_STR);
+          $cambio->bindParam(':p', $p, PDO::PARAM_STR);
+          $cambio->bindParam(':s', $s, PDO::PARAM_INT);
+          $cambio->bindParam(':t', $t, PDO::PARAM_STR);
+          $cambio->bindParam(':i', $idI, PDO::PARAM_INT);
+          if($cambio->execute()){
+             return 1;
+          }
+       }
+       function delIngrediente($idI){
+         $cI = $this->conn->db->prepare("SELECT * from incluyen where idI = :i");
+         $cI->bindParam(':i', $idI, PDO::PARAM_INT);
+         if($cI->execute()){
+            if ($cI->rowCount()>0) {
+               $bIn = $this->conn->db->prepare('DELETE FROM incluyen where idI=:i');
+               $bIn->bindParam(':i', $idI, PDO::PARAM_INT);
+               if($bIn->execute()){
+                  $bI = $this->conn->db->prepare('DELETE FROM ingredientes where idI = :i');
+                  $bI->bindParam(':i', $idI, PDO::PARAM_INT);
+                  if($bI->execute()){
+                     return 11;
+                  }
+               }
+            }else{
+               $bI = $this->conn->db->prepare('DELETE FROM ingredientes where idI = :i');
+               $bI->bindParam(':i', $idI, PDO::PARAM_INT);
+               if($bI->execute()){
+                  return 21;
+               }
+            }
+         }
        }
        //Funciones de orden
        function verOrden($numM, $cl){
